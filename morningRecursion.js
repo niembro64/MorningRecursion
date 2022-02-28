@@ -14,13 +14,13 @@
 // [9,     |      10] <------ whittle down to 1 or 2 items to check and solve!
 
 var iterations = 0;
-function recursiveBinarySearch() {
+function iterate() {
     iterations++;
     console.log("recursiveBinarySearch Iteration: {iterations}", iterations)
-    if (iterations > 10){
+    if (iterations > 9){
         return
     }
-    recursiveBinarySearch()
+    iterate()
     return 
 }
 
@@ -30,7 +30,7 @@ function recursiveBinarySearch() {
 // var arr_minus_end = [0,1,2,3,4,5,6,7,8]
 // var arr_minus_middle = [0,1,2,3,5,6,7,8,9]
 
-console.log(recursiveBinarySearch())
+console.log(iterate())
 
 
 
