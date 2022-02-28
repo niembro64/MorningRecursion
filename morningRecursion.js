@@ -21,36 +21,22 @@ function iterate() {
     iterate();
     return;
 }
-
-function recursiveBinarySearch(a, num) {
-    printArray(a)
-    iterations++;
-    // console.log("recursiveBinarySearch Iteration: {iterations}", iterations);
-    
-    half = a.length/2;
-    found = -1;
-
-    // base case
-    if (a.length < 1){
-        return found;
-    } 
-    
-    if (a[0] == num) {
-        found = a[0]
-        console.log("FOUND!!")
-        return found;
+function recursiveBinarySearch(arr, val) {
+    let middle = Math.floor((arr.length - 1) / 2);
+    if (arr.length == 0) {
+        return false
     }
-
-    // recursive case
-    // return lower half if num < arr[mid] else upper half
-    if (num < a[half]){
-        return recursiveBinarySearch(a.slice(0, half), num)
+    if (arr[middle] == val) {
+        return true
+    } else if (val < arr[middle]) {
+        console.log("chekcing middle " + middle)
+        console.log("checking left")
+        return recursiveBinarySearch(arr.slice(0, middle), val)
+    } else {
+        console.log("chekcing middle " + middle)
+        console.log("checking right")
+        return recursiveBinarySearch(arr.slice(middle + 1, arr.length), val)
     }
-    else {
-        return recursiveBinarySearch(a.slice(half, a.length-1), num)
-    }
-
-    return found; 
 }
 
 function printArray(b){
@@ -86,7 +72,7 @@ console.log("seraching", searchVal)
 console.log(recursiveBinarySearch(arr3, searchVal))
 console.log("________________")
 console.log()
-searchVal = 8;
+searchVal = 37;
 iterations = 0;
 console.log("seraching", searchVal)
 console.log(recursiveBinarySearch(arr4, searchVal))
