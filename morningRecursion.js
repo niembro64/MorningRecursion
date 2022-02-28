@@ -1,9 +1,8 @@
-// Write a function that, given a sorted array and a value, determines whether the value is found within the array through 
-// recursively searching, and returns the index. Binary Search works by checking whether the value given is greater than or 
-// less than a midway point, which is why the given array must be sorted. 
+// Write a function that, given a sorted array and a value, determines whether the value is found within the array through
+// recursively searching, and returns the index. Binary Search works by checking whether the value given is greater than or
+// less than a midway point, which is why the given array must be sorted.
 // Also, even though there's only an array and value given, you can add additional parameters to your function.
 // Return -1 if the number is not in the array
-
 
 // val = 9
 // arr = [1,2,3,5,7,9,10 ,11,13,14,15,56,78]
@@ -13,31 +12,86 @@
 // [7,      |       9,10] <------ depending on where you split,9 is greater than halfway
 // [9,     |      10] <------ whittle down to 1 or 2 items to check and solve!
 
-var iterations = 0;
 function iterate() {
     iterations++;
-    console.log("recursiveBinarySearch Iteration: {iterations}", iterations)
-    if (iterations > 9){
-        return
+    console.log("recursiveBinarySearch Iteration: {iterations}", iterations);
+    if (iterations > 9) {
+        return;
     }
-    iterate()
-    return 
+    iterate();
+    return;
 }
 
+function recursiveBinarySearch(a, num) {
+    printArray(a)
+    iterations++;
+    // console.log("recursiveBinarySearch Iteration: {iterations}", iterations);
+    
+    half = a.length/2;
+    found = -1;
 
-// var arr = [0,1,2,3,4,5,6,7,8,9]
-// var arr_minus_start = [1,2,3,4,5,6,7,8,9]
-// var arr_minus_end = [0,1,2,3,4,5,6,7,8]
-// var arr_minus_middle = [0,1,2,3,5,6,7,8,9]
+    // base case
+    if (a.length < 1){
+        return found;
+    } 
+    
+    if (a[0] == num) {
+        found = a[0]
+        console.log("FOUND!!")
+        return found;
+    }
 
-console.log(iterate())
+    // recursive case
+    // return lower half if num < arr[mid] else upper half
+    if (num < a[half]){
+        return recursiveBinarySearch(a.slice(0, half), num)
+    }
+    else {
+        return recursiveBinarySearch(a.slice(half, a.length-1), num)
+    }
 
+    return found; 
+}
 
+function printArray(b){
+    console.log(b)
+}
 
+var iterations = 0;
+iterate();
 
+console.log("________________")
+console.log()
 
+var arr1 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39]
+var arr2 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39]
+var arr3 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39]
+var arr4 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39]
 
-
+searchVal = 5;
+iterations = 0;
+console.log("seraching", searchVal)
+console.log(recursiveBinarySearch(arr1, searchVal))
+console.log("________________")
+console.log()
+searchVal = 6;
+iterations = 0;
+console.log("seraching", searchVal)
+console.log(recursiveBinarySearch(arr2, searchVal))
+console.log("________________")
+console.log()
+searchVal = 7;
+iterations = 0;
+console.log("seraching", searchVal)
+console.log(recursiveBinarySearch(arr3, searchVal))
+console.log("________________")
+console.log()
+searchVal = 8;
+iterations = 0;
+console.log("seraching", searchVal)
+console.log(recursiveBinarySearch(arr4, searchVal))
+console.log("________________")
+console.log()
 
 // [1, 2], ---> -2
 // [1, 2], ---> 4
@@ -48,5 +102,5 @@ console.log(iterate())
 // [1, 1, 1, 1, 1], ---> 1
 // [1, 2, 3, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10], ---> 8
 // make sure to test all given scenarios!
-// extra challenge: don't use built-in functions such as splice() or slice(), 
+// extra challenge: don't use built-in functions such as splice() or slice(),
 // with the exception of rounding functions (Math.floor(), Math.ceil())
